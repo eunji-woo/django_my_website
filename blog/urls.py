@@ -17,6 +17,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('blog/', views.index),
+    path('', views.PostList.as_view()),
 
 ]

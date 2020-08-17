@@ -30,6 +30,7 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return '/blog/tag/{}/'.format(self.slug)
 
+
 class Post(models.Model):
     title = models.CharField(max_length=30)
     content = MarkdownxField()

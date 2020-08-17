@@ -1,4 +1,13 @@
-<!-- Comments Form -->
+{% extends 'blog/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}{{ object.title }} - Blog{% endblock %}
+
+{% block content %}
+
+
+    <!-- Comments Form -->
     <div class="card my-4">
         <h5 class="card-header">Leave a Comment:</h5>
         <div class="card-body">
@@ -21,7 +30,7 @@
         {% for comment in object.comment_set.all %}
             <div class="media mb-4" id="comment-id-{{ comment.pk }}">
                 {% if comment.author.socialaccount_set.all.0.get_avatar_url %}
-                    <img width="50px" class="d-flex mr-3 rounded-circle" src="{{ comment.author.socialaccount_set.all.0.get_avatar_url }}" alt="">
+                <img width="50px" class="d-flex mr-3 rounded-circle" src="{{ comment.author.socialaccount_set.all.0.get_avatar_url }}" alt="">
                 {% else %}
                     <img width="50px" class="d-flex mr-3 rounded-circle" src="https://api.adorable.io/avatars/285/{{ comment.author }}.png" alt="">
                 {% endif %}
@@ -34,7 +43,8 @@
                     {{ comment.get_markdown_content | safe }}
                 </div>
             </div>
-        {% endfor %}    </div>
+        {% endfor %}
+    </div>
 
     {% for comment in object.comment_set.all %}
         {% if user == comment.author %}
@@ -58,3 +68,7 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
